@@ -24,13 +24,23 @@ class App extends Component {
   handleSubmit(event){
     event.preventDefault();
     var studentName = document.getElementById("new-student").value;
-    console.dir(event.target)
+    // console.dir(event.target)
     // we want to sent student name to server!!!
     // we CANNOT use get request....we need to use post!
     // there is an axios.post and there is just axios and then you hand it all the info ({})
     // axios always returns a promise,
     // so we will send data to the express server and wait for a json response
     // when we get it we will move forward
+    axios({
+      method: 'POST',
+      url: "http://localhost:3000/addStudent",
+      data: {
+        //get this by req.body.studentName
+        studentName: studentName
+      }
+    }).then((data)=>{
+      console.log(data)
+    })
   }
 
 
